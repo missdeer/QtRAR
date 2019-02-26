@@ -2,6 +2,7 @@ QT       -= gui
 
 TARGET = QtRAR
 TEMPLATE = lib
+CONFIG += staticlib
 
 DEFINES += QTRAR_LIBRARY
 CONFIG(staticlib): DEFINES += QTRAR_STATIC
