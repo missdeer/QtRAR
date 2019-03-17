@@ -1,14 +1,17 @@
 DEFINES += _FILE_OFFSET_BITS=64 _LARGEFILE_SOURCE RAR_SMP RARDLL
 
-win32: {
-     CONFIG(release, debug|release) : {
-        LIBS += -L$$OUT_PWD/unrar/release
+win32: LIBS += -lAdvApi32 -lOleAut32 -lUser32 -lShell32 -lPowrProf
+!CONFIG(staticlib): {
+     win32: {
+          CONFIG(release, debug|release) : {
+             LIBS += -L$$OUT_PWD/unrar/release
+          } else: {
+             LIBS += -L$$OUT_PWD/unrar/debug
+          }
      } else: {
-        LIBS += -L$$OUT_PWD/unrar/debug
+          LIBS += -L$$OUT_PWD/unrar
      }
-     LIBS += -lunrar -lAdvApi32 -lOleAut32 -lUser32 -lShell32 -lPowrProf
-} else: {
-    LIBS += -L$$OUT_PWD/unrar -lunrar
+     LIBS += -lunrar 
 }
 
 SOURCES += \
