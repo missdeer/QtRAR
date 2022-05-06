@@ -72,10 +72,12 @@
     #define for if (0) ; else for
   #endif
   #include <direct.h>
+  #if !defined(__clang__)
   #include <intrin.h>
 
   #define USE_SSE
   #define SSE_ALIGNMENT 16
+  #endif
 #else
   #include <dirent.h>
 #endif // _MSC_VER
